@@ -1,0 +1,33 @@
+.running-text-container {
+    background: #212529;
+    /* Dark background */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid #ed1b24;
+    /* Red top border for visibility */
+}
+
+.running-text-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+/* Pause on hover */
+.running-text-container:hover .running-text-content {
+    animation-play-state: paused;
+}

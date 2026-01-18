@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Chakra+Petch:wght@400;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/digital-7-mono');
+
+/* --- GLOBAL VARS & RESET --- */
+:root {
+    --bg-dark: #0f172a;
+    /* Dark Blue-ish Slate */
+    --card-dark: #1e293b;
+    /* Slate 800 */
+    --text-white: #ffffff;
+
+    /* Solid Colors */
+    --solid-blue: #3b82f6;
+    --solid-blue-header: #60a5fa;
+    /* Lighter for header band */
+    --solid-green: #22c55e;
+    /* Green 500 */
+    --solid-green-dark: #16a34a;
+    /* Green 600 */
+    --solid-orange: #f97316;
+    /* Orange 500 */
+    --solid-grey: #64748b;
+    /* Slate 500 */
+}
+
+.dashboard-container {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Chakra Petch', sans-serif;
+    padding: 1.5vh 1.5vw;
+    padding-bottom: 7vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* --- HEADER --- */
+.dashboard-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5vh;
+    height: 8vh;
+    flex-shrink: 0;
+}
+
+.header-logo-container {
+    background: #e2e8f0;
+    /* Light Grey like image */
+    padding: 5px 15px;
+    border-radius: 6px;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    height: 4vh;
+    width: auto;
+}
+
+.header-title-container {
+    text-align: center;
+    flex: 1;
+}
+
+.header-title-main {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5vh;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 1px;
+}
+
+.header-subtitle {
+    font-size: 1.8vh;
+    /* Increased from 1.1vh */
+    color: var(--solid-blue);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 0px;
+    /* border-top: 1px solid #334155;  Removed lines as requested previously */
+    /* border-bottom: 1px solid #334155; */
+    border: none;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+/* --- GRID LAYOUT --- */
+.dashboard-grid {
+    display: grid;
+    /* Ratio roughly 25% | 60% | 15% - Even narrower Right Column */
+    grid-template-columns: 2.5fr 6fr 1.5fr;
+    gap: 1.5vh;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+}
+
+/* --- COLUMNS --- */
+.col-left,
+.col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    height: 100%;
+    min-height: 0;
+}
+
+.col-center {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+/* --- LEFT COLUMN (Dark Cards) --- */
+.card-base {
+    background-color: var(--card-dark);
+    border-radius: 12px;
+    padding: 1.5vh;
+    border: 1px solid #334155;
+}
+
+/* Clock */
+.clock-card {
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.digital-time {
+    font-family: 'Orbitron', monospace;
+    font-size: 5vh;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.digital-date {
+    color: #cbd5e1;
+    font-size: 2vh;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5vh;
+}
+
+/* Location Card (SSBW) */
+.location-card {
+    text-align: center;
+    flex: 0 0 auto;
+    padding: 2vh;
+}
+
+.location-name-display {
+    color: #22d3ee;
+    /* Cyan/Teal */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4vh;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+}
+
+/* Dept List */
+.dept-list-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.dept-header {
+    text-align: center;
+    color: #fff;
+    /* Brighter */
+    font-weight: 800;
+    /* Bolder */
+    text-transform: uppercase;
+    margin-bottom: 1.5vh;
+    font-size: 2.2vh;
+    /* Increased to 2.2vh */
+    letter-spacing: 1px;
+}
+
+.dept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.5vw;
+    font-size: 1.7vh;
+    /* Increased from 1.5vh */
+    overflow-y: hidden;
+    padding-right: 0;
+    height: 100%;
+    align-content: start;
+}
+
+.dept-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4vh 0;
+    align-items: center;
+}
+
+.dept-name-text {
+    color: #fff;
+    /* Brighter text (was #e2e8f0) */
+    font-weight: 700;
+    /* Bolder */
+    display: flex;
+    align-items: center;
+}
+
+.bullet {
+    color: #fff;
+    /* White bullet */
+    margin-right: 8px;
+    font-size: 2rem;
+    line-height: 0;
+}
+
+.dept-count-text {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* --- CENTER COLUMN (Solid Blue POB) --- */
+.pob-main-card {
+    background-color: var(--solid-blue);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.pob-header-band {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Restored background */
+    text-align: center;
+    padding: 2vh 0;
+    /* Reverted padding */
+    font-size: 2.5vh;
+    /* Reverted size */
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.pob-number-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pob-number-digital {
+    font-family: 'Digital-7 Mono', monospace;
+    font-size: 60vh;
+    /* Restored to large size as requested */
+    color: #fff;
+    line-height: 0.8;
+    font-weight: 400;
+    /* Deep shadow for 3D effect/Depth */
+    text-shadow:
+        4px 4px 0px rgba(0, 0, 0, 0.2),
+        /* Hard edge */
+        8px 8px 20px rgba(0, 0, 0, 0.4);
+    /* Soft blur */
+    transform: translateY(-12%);
+    /* Visually centered */
+}
+
+/* --- RIGHT COLUMN (Solid Color Cards) --- */
+.stat-card-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 12px;
+    position: relative;
+    min-height: 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Tap In (Green) */
+.card-tap-in {
+    background-color: var(--solid-green);
+}
+
+/* 2. Vehicle (Blue) */
+.card-vehicle {
+    background-color: var(--solid-blue);
+}
+
+/* 3. Field (Orange) */
+.card-field {
+    background-color: var(--solid-orange);
+}
+
+/* 4. Off Duty (Grey) */
+.card-off-duty {
+    background-color: var(--solid-grey);
+}
+
+
+.stat-card-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.6vh;
+    /* Increased from 1.4vh */
+    font-weight: 700;
+    color: rgba(255, 255, 255, 1);
+    /* Fully white */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5vh;
+    /* Added spacing */
+}
+
+.stat-card-value {
+    font-family: 'Digital-7 Mono', monospace;
+    font-size: 7.8vh;
+    /* Increased from 7vh */
+    color: #fff;
+    line-height: 1;
+    text-shadow: none;
+    margin: 0;
+}
+
+.stat-card-sub {
+    font-size: 1.4vh;
+    /* Increased to 1.4vh */
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1.5vh;
+}
+
+.vehicle-sub-grid {
+    display: flex;
+    gap: 0.8vw;
+    /* Reduced gap */
+    font-family: 'Digital-7 Mono', monospace;
+    font-size: 2.2vh;
+    /* Reduced from 3.5vh to prevent wrapping */
+    color: #fff;
+    font-weight: 400;
+    margin: 0.2vh 0;
+}
+
+.vehicle-sub-grid span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* --- UTILS --- */
+.dark-select {
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 0.5vh 1vw;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+}
+
+/* --- LIVE INDICATOR --- */
+.live-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 1.6vh;
+    letter-spacing: 1px;
+}
+
+.pulse-dot {
+    width: 1.2vh;
+    height: 1.2vh;
+    background-color: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.4);
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}

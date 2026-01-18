@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# 1. Proxy API Requests
+RewriteRule ^api/(.*)$ http://localhost:5000/$1 [P,L]
+
+# 2. WebSocket Upgrade for Socket.io
+RewriteCond %{HTTP:Upgrade} =websocket [NC]
+RewriteRule ^socket\.io/(.*) ws://localhost:5000/socket.io/$1 [P,L]
+
+# 3. Proxy Socket.io HTTP Polling
+RewriteRule ^socket\.io/(.*)$ http://localhost:5000/socket.io/$1 [P,L]
+
+# 4. Proxy Uploads
+RewriteRule ^uploads/(.*)$ http://localhost:5000/uploads/$1 [P,L]
+
+# 4. React Router Fallback
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /pob/index.html [L]
